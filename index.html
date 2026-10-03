@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World - My Work</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: rgba(23, 32, 54, 0.55);
+      --card-border: rgba(0, 242, 254, 0.2);
+      --primary-glow: #00f2fe;
+      --accent-glow: #ff007f;
+      --text-color: #e0e6ed;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* แสงนีออนพื้นหลังขยับตามเมาส์ */
+    .glow-bg {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(255, 0, 127, 0.08) 50%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+      transition: transform 0.15s ease-out;
+      border-radius: 50%;
+      filter: blur(40px);
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3rem 4rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-glow);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      background: linear-gradient(45deg, var(--primary-glow), var(--accent-glow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: rgba(224, 230, 237, 0.7);
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-bg" id="glowBg"></div>
+
+  <div class="card">
+    <h1>Hello World! 👋</h1>
+    <p>My Work Project is ready on Vercel.</p>
+  </div>
+
+  <script>
+    // เอฟเฟกต์แสงนีออนขยับตามตำแหน่งเมาส์
+    const glowBg = document.getElementById('glowBg');
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      glowBg.style.transform = `translate(-50%, -50%) translate(${ (x - window.innerWidth / 2) * 0.15 }px, ${ (y - window.innerHeight / 2) * 0.15 }px)`;
+    });
+  </script>
+
+</body>
+</html>
